@@ -23,10 +23,9 @@ import static ru.a799000.alexander.anit2.ui.navigate.MainActivityActions.START_A
 public class NavigateManager {
 
 
+
     public AppCompatActivity mActivity;
     private Navigator mNavigator;
-
-
 
     public NavigateManager(AppCompatActivity activity) {
         this.mActivity = activity;
