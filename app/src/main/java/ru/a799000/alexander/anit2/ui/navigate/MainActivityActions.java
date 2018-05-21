@@ -8,7 +8,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 import static ru.a799000.alexander.anit2.ui.navigate.MainActivityActions.DETAIL_ACTION;
 import static ru.a799000.alexander.anit2.ui.navigate.MainActivityActions.START_ACTION;
 
-
+//nar reff
 @Retention(SOURCE)
 @StringDef({
         START_ACTION,
