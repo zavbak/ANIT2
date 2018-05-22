@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import ru.a799000.alexander.anit2.R;
 import ru.a799000.alexander.anit2.ui.activity.MainActivity;
+import ru.a799000.alexander.anit2.ui.fragment.ContractorsFeedFragment;
 import ru.a799000.alexander.anit2.ui.fragment.TestNavFragment;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
@@ -46,7 +47,7 @@ public class NavigateManager {
                     case START_ACTION:
                         return TestNavFragment.getNewInstance();
                     case DETAIL_ACTION:
-                        //return ContractorsFeedFragment.getNewInstance();
+                        return ContractorsFeedFragment.getNewInstance();
                     default:
                         throw new RuntimeException("Unknown screen key!");
                 }

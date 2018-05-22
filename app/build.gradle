@@ -66,4 +66,7 @@ dependencies {
 
     //cicerone
     implementation 'ru.terrakok.cicerone:cicerone:3.0.0'
+
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.1.1'
 }

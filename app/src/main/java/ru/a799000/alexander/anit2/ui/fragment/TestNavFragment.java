@@ -15,11 +15,10 @@ import butterknife.OnClick;
 import ru.a799000.alexander.anit2.R;
 import ru.a799000.alexander.anit2.ui.activity.MainActivity;
 
+import static ru.a799000.alexander.anit2.ui.navigate.MainActivityActions.DETAIL_ACTION;
+
 
 public class TestNavFragment extends MvpAppCompatFragment {
-
-    @Inject
-    MainActivity mMainActivity;
 
     public static TestNavFragment getNewInstance() {
         TestNavFragment fragment = new TestNavFragment();
@@ -43,6 +42,6 @@ public class TestNavFragment extends MvpAppCompatFragment {
 
     @OnClick(R.id.avatar_imageView)
     public void submit(View view) {
-        //mMainActivity.getRouter().navigateTo(DETAIL_ACTION);
+        ((MainActivity)getActivity()).getRouter().navigateTo(DETAIL_ACTION);
     }
 }
