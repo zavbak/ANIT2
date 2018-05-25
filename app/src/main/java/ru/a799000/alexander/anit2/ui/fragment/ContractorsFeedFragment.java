@@ -46,6 +46,11 @@ public class ContractorsFeedFragment extends BaseFeedFragment {
         return R.string.screen_name_contractors;
     }
 
+    @Override
+    public void setupToolbarToolBar() {
+        mToolbar.getMenu().findItem(R.id.action_search).setVisible(true);
+    }
+
 
     @Override
     public void showMessage(String str) {

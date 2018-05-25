@@ -4,16 +4,21 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 
 import butterknife.ButterKnife;
+import ru.a799000.alexander.anit2.ui.activity.BaseActivity;
 
 
 public abstract class BaseFragment extends MvpAppCompatFragment {
+
+    protected Toolbar mToolbar;
 
     @LayoutRes
     protected abstract int getMainContentLayout();
@@ -29,7 +34,22 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
 
         View view = inflater.inflate(getMainContentLayout(), container, false);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
         return view;
+
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        setupToolbarToolBar();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mToolbar = ((BaseActivity) getActivity()).getToolbar();
+
 
     }
 
@@ -39,6 +59,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
 
     @StringRes
     public abstract int onCreateToolbarTitle();
+    public abstract void setupToolbarToolBar();
 
 
 }

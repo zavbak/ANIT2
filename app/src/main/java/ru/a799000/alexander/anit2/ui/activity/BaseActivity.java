@@ -1,8 +1,11 @@
 package ru.a799000.alexander.anit2.ui.activity;
 
+import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 
@@ -49,9 +52,11 @@ abstract public class BaseActivity extends MvpAppCompatActivity  {
 
     }
 
+
     public Router getRouter() {
         return router;
     }
+
 
     @Override
     protected void onResumeFragments() {
@@ -64,6 +69,10 @@ abstract public class BaseActivity extends MvpAppCompatActivity  {
     protected void onPause() {
         super.onPause();
         navigatorHolder.removeNavigator();
+    }
+
+    public Toolbar getToolbar() {
+        return mToolbar;
     }
 
     protected abstract void setupActivityComponent();
