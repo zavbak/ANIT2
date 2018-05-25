@@ -1,6 +1,7 @@
 package ru.a799000.alexander.anit2.moxy.view;
 
 import com.arellomobile.mvp.MvpView;
+import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
@@ -22,5 +23,5 @@ public interface BaseFeedView extends MvpView {
     void hideListProgress();
 
     @StateStrategyType(SingleStateStrategy.class)
-    void setTextSizeList(String str);
+    void setTextSizeList();
 }

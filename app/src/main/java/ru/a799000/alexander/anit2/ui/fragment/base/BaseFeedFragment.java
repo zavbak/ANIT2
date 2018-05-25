@@ -5,20 +5,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.support.v7.widget.RxRecyclerView;
+import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.subjects.PublishSubject;
 import ru.a799000.alexander.anit2.R;
-import ru.a799000.alexander.anit2.common.BaseAdapter;
 import ru.a799000.alexander.anit2.common.MyLinearLayoutManager;
 import ru.a799000.alexander.anit2.moxy.presenter.BaseFeedPresenter;
 import ru.a799000.alexander.anit2.moxy.view.BaseFeedView;
@@ -37,7 +36,8 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
 
     protected BaseFeedPresenter mPresenter;
 
-    int countScroll;
+    String mSearchString;
+
 
 
     @Override
@@ -58,8 +58,8 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     }
 
     @Override
-    public void setTextSizeList(String str) {
-        tvSize.setText(str);
+    public void setTextSizeList() {
+        tvSize.setText(mPresenter.getTextCount());
     }
 
     @Override
@@ -98,6 +98,50 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
                 });
 
         ((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.action_search).getActionView();
+        searchView.getQuery().toString();
+        outState.putString("key", searchView.getQuery().toString());
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            mSearchString = savedInstanceState.getString("key");
+        }
+
+    }
+
+    @Override
+    public void setupToolbarToolBar() {
+        mToolbar.getMenu().findItem(R.id.action_search).setVisible(true);
+        SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.action_search).getActionView();
+
+
+        if (mSearchString != null && !mSearchString.isEmpty()) {
+            mToolbar.getMenu().findItem(R.id.action_search).expandActionView();
+            searchView.setQuery(mSearchString, true);
+            searchView.clearFocus();
+        }
+
+
+        RxSearchView.queryTextChanges(searchView)
+                .skip(1)
+                .debounce(400, TimeUnit.MILLISECONDS)
+                .map(CharSequence::toString)
+                .filter(S->S.length()>2 || S.length() == 0)
+                //.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s->{
+                    mPresenter.setFilter(s);
+                });
+
     }
 
 

@@ -64,6 +64,11 @@ public class ContractorsPresenter extends BaseFeedPresenter<BaseFeedView> {
 
     }
 
+    @Override
+    void setTextSizeList() {
+        getViewState().setTextSizeList();
+    }
+
     BaseFeedViewModel<BaseViewModel> transformModelBaseFeedViewModel(ContractorsGetRsMod contractorsGetRsMod){
 
         BaseFeedViewModel<BaseViewModel> baseFeedViewModel = new BaseFeedViewModel();

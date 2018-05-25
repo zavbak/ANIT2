@@ -1,15 +1,25 @@
 package ru.a799000.alexander.anit2.ui.fragment;
 
 
+
+import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 
+import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
+import com.jakewharton.rxbinding2.support.v7.widget.RxSearchView;
 
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ru.a799000.alexander.anit2.R;
 import ru.a799000.alexander.anit2.common.BaseAdapter;
 import ru.a799000.alexander.anit2.moxy.presenter.BaseFeedPresenter;
 import ru.a799000.alexander.anit2.moxy.presenter.ContractorsPresenter;
+import ru.a799000.alexander.anit2.moxy.view.BaseFeedView;
 import ru.a799000.alexander.anit2.ui.fragment.base.BaseFeedFragment;
 
 
@@ -46,10 +56,7 @@ public class ContractorsFeedFragment extends BaseFeedFragment {
         return R.string.screen_name_contractors;
     }
 
-    @Override
-    public void setupToolbarToolBar() {
-        mToolbar.getMenu().findItem(R.id.action_search).setVisible(true);
-    }
+
 
 
     @Override
