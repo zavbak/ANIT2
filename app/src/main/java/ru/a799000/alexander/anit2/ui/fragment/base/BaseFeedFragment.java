@@ -100,14 +100,14 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
         ((SimpleItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.action_search).getActionView();
-        searchView.getQuery().toString();
-        outState.putString("key", searchView.getQuery().toString());
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.action_search).getActionView();
+//        searchView.getQuery().toString();
+//        outState.putString("key", searchView.getQuery().toString());
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,11 +122,12 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     public void setupToolbarToolBar() {
         mToolbar.getMenu().findItem(R.id.action_search).setVisible(true);
         SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.action_search).getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
 
-        if (mSearchString != null && !mSearchString.isEmpty()) {
+        if (mPresenter.getFilter() != null && !mPresenter.getFilter().isEmpty()) {
             mToolbar.getMenu().findItem(R.id.action_search).expandActionView();
-            searchView.setQuery(mSearchString, true);
+            searchView.setQuery(mPresenter.getFilter(), true);
             searchView.clearFocus();
         }
 
