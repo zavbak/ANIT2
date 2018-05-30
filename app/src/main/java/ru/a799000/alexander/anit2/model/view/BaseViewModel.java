@@ -26,7 +26,9 @@ public abstract class BaseViewModel {
 
 
     public enum LayoutTypes {
-        ContractorItem(R.layout.item_contractor);
+        ContractorItem(R.layout.item_contractor),
+        TaskItem(R.layout.item_task);
+
 
         private final int id;
 

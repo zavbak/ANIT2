@@ -7,6 +7,7 @@ import dagger.Provides;
 
 import ru.a799000.alexander.anit2.repo.rest.RestClient;
 import ru.a799000.alexander.anit2.repo.rest.methods.contractors.ContractorsGetApi;
+import ru.a799000.alexander.anit2.repo.rest.methods.tasks.TasksGetApi;
 import ru.a799000.alexander.anit2.repo.rest.methods.test.TestGetApi;
 
 
@@ -39,6 +40,13 @@ public class RestModule {
     public ContractorsGetApi provideContractorsGetApi() {
         return mRestClient.createService(ContractorsGetApi.class);
     }
+
+    @Provides
+    @Singleton
+    public TasksGetApi provideTasksGetApi() {
+        return mRestClient.createService(TasksGetApi.class);
+    }
+
 
 
 }

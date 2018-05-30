@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ANIT2</string>
     <string name="screen_name_contractors">Контрагенты</string>
+    <string name="screen_name_tasks">Задачи</string>
     <string name="screen_name_test">Тестовый</string>
     <string name="action_search">Поиск</string>
 </resources>
